@@ -643,14 +643,68 @@ function showMathLogin(){
   let result=document.getElementById("class10MathResult");
 
   result.innerHTML=
-    "<div style='padding:20px;background:white;border:1px solid #ddd;border-radius:12px;text-align:center;'>"+
-    "<h3>🔐 Login Required</h3>"+
-    "<p>10 free questions complete ho gaye.</p>"+
-    "<input type='email' placeholder='Enter your email' style='width:100%;padding:12px;border:1px solid #ddd;border-radius:8px;box-sizing:border-box;margin:8px 0;'>"+
-    "<button style='width:100%;padding:12px;border:0;border-radius:8px;background:#111827;color:white;'>"+
-    "Continue"+
+    "<div style='padding:22px;background:white;border:1px solid #e5e7eb;border-radius:15px;text-align:center;'>"+
+
+    "<div style='font-size:38px;'>🔐</div>"+
+
+    "<h3 style='font-size:22px;margin:8px 0;'>Continue with Tool Mitra</h3>"+
+
+    "<p style='color:#666;'>10 free questions complete ho gaye.</p>"+
+
+    "<input type='text' placeholder='Full Name' style='width:100%;padding:13px;border:1px solid #ddd;border-radius:9px;box-sizing:border-box;margin:6px 0;font-size:15px;'>"+
+
+    "<input type='email' placeholder='Email Address' style='width:100%;padding:13px;border:1px solid #ddd;border-radius:9px;box-sizing:border-box;margin:6px 0;font-size:15px;'>"+
+
+    "<input type='password' placeholder='Create Password' style='width:100%;padding:13px;border:1px solid #ddd;border-radius:9px;box-sizing:border-box;margin:6px 0;font-size:15px;'>"+
+
+    "<button onclick='demoSignup()' style='width:100%;padding:13px;margin-top:8px;border:0;border-radius:9px;background:#111827;color:white;font-size:16px;font-weight:bold;'>"+
+    "🚀 Sign Up"+
     "</button>"+
+
+    "<p style='margin:15px 0 8px;color:#777;'>Already have an account?</p>"+
+
+    "<button onclick='showLoginForm()' style='width:100%;padding:12px;border:1px solid #ddd;border-radius:9px;background:white;font-size:15px;'>"+
+    "Login"+
+    "</button>"+
+
     "</div>";
+}
+
+function showLoginForm(){
+
+  let result=document.getElementById("class10MathResult");
+
+  result.innerHTML=
+    "<div style='padding:22px;background:white;border:1px solid #e5e7eb;border-radius:15px;text-align:center;'>"+
+
+    "<div style='font-size:38px;'>👋</div>"+
+
+    "<h3 style='font-size:22px;margin:8px 0;'>Welcome Back</h3>"+
+
+    "<input type='email' placeholder='Email Address' style='width:100%;padding:13px;border:1px solid #ddd;border-radius:9px;box-sizing:border-box;margin:6px 0;font-size:15px;'>"+
+
+    "<input type='password' placeholder='Password' style='width:100%;padding:13px;border:1px solid #ddd;border-radius:9px;box-sizing:border-box;margin:6px 0;font-size:15px;'>"+
+
+    "<button onclick='demoLogin()' style='width:100%;padding:13px;margin-top:8px;border:0;border-radius:9px;background:#111827;color:white;font-size:16px;font-weight:bold;'>"+
+    "🔓 Login"+
+    "</button>"+
+
+    "<p style='margin:15px 0 8px;color:#777;'>New to Tool Mitra?</p>"+
+
+    "<button onclick='showMathLogin()' style='width:100%;padding:12px;border:1px solid #ddd;border-radius:9px;background:white;font-size:15px;'>"+
+    "Create Account"+
+    "</button>"+
+
+    "</div>";
+}
+
+function demoSignup(){
+  alert("Sign Up system ko next step me connect karenge.");
+}
+
+function demoLogin(){
+  alert("Login system ko next step me connect karenge.");
+}
 }
 </script>
 
