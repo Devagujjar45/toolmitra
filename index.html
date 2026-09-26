@@ -3,104 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title> Tool Mitra - Free Online Tools</title>
+<title>Tool Mitra - Free Online Tools</title>
 
 <style>
 *{box-sizing:border-box}
-
-body{
-margin:0;
-font-family:Arial,sans-serif;
-background:#f5f7fb;
-color:#222;
-}
-
-header{
-background:#111827;
-color:white;
-padding:25px 15px;
-text-align:center;
-}
-
+body{margin:0;font-family:Arial,sans-serif;background:#f5f7fb;color:#222}
+header{background:#111827;color:white;text-align:center;padding:25px 15px}
 header h1{margin:0;font-size:32px}
-header p{margin:8px 0 0;color:#d1d5db}
-
-.container{
-max-width:750px;
-margin:25px auto;
-padding:15px;
-}
-
-.card{
-background:white;
-border-radius:16px;
-padding:22px;
-margin-bottom:22px;
-box-shadow:0 5px 20px rgba(0,0,0,.08);
-}
-
-h2{text-align:center;margin-top:0}
-
-label{
-display:block;
-margin-top:13px;
-margin-bottom:6px;
-font-weight:bold;
-}
-
-input,select{
-width:100%;
-padding:13px;
-border:1px solid #ccc;
-border-radius:9px;
-font-size:16px;
-}
-
-button{
-width:100%;
-padding:13px;
-margin-top:17px;
-border:0;
-border-radius:9px;
-background:#111827;
-color:white;
-font-size:16px;
-}
-
-.result{
-margin-top:18px;
-padding:14px;
-background:#f0fdf4;
-border-radius:9px;
-text-align:center;
-font-weight:bold;
-min-height:20px;
-}
-
-.tools{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:14px;
-}
-
-.tool-box{
-background:white;
-padding:18px;
-border-radius:12px;
-text-align:center;
-box-shadow:0 4px 15px rgba(0,0,0,.06);
-}
-
-footer{
-text-align:center;
-padding:25px;
-color:#666;
-}
-
-@media(max-width:600px){
-.tools{grid-template-columns:1fr}
-header h1{font-size:27px}
-}
+header p{color:#d1d5db}
+.container{max-width:750px;margin:25px auto;padding:15px}
+.card{background:white;padding:22px;margin-bottom:20px;border-radius:15px;box-shadow:0 4px 15px #00000012}
+h2{text-align:center}
+label{display:block;margin-top:12px;font-weight:bold}
+input,select{width:100%;padding:12px;margin-top:6px;border:1px solid #ccc;border-radius:8px;font-size:16px}
+button{width:100%;padding:13px;margin-top:16px;background:#111827;color:white;border:0;border-radius:8px;font-size:16px}
+.result{margin-top:15px;padding:13px;background:#f0fdf4;border-radius:8px;text-align:center;font-weight:bold}
+footer{text-align:center;padding:25px;color:#666}
 </style>
 </head>
 
@@ -113,358 +31,176 @@ header h1{font-size:27px}
 
 <div class="container">
 
-<!-- Percentage -->
 <div class="card">
 <h2>Percentage Calculator</h2>
-
 <label>Percentage (%)</label>
-<input type="number" id="percentage" placeholder="Example: 20">
-
+<input id="percent" type="number">
 <label>Number</label>
-<input type="number" id="number" placeholder="Example: 500">
-
-<button onclick="calculatePercentage()">Calculate</button>
-
-<div class="result" id="percentageResult"></div>
+<input id="percentNum" type="number">
+<button onclick="percentage()">Calculate</button>
+<div class="result" id="percentResult"></div>
 </div>
 
-
-<!-- Age -->
 <div class="card">
 <h2>Age Calculator</h2>
-
 <label>Date of Birth</label>
-<input type="date" id="dob">
-
-<button onclick="calculateAge()">Calculate Age</button>
-
+<input id="dob" type="date">
+<button onclick="age()">Calculate Age</button>
 <div class="result" id="ageResult"></div>
 </div>
 
-
-<!-- BMI -->
 <div class="card">
 <h2>BMI Calculator</h2>
-
 <label>Height (cm)</label>
-<input type="number" id="height" placeholder="Example: 172">
-
+<input id="height" type="number">
 <label>Weight (kg)</label>
-<input type="number" id="weight" placeholder="Example: 63">
-
-<button onclick="calculateBMI()">Calculate BMI</button>
-
+<input id="weight" type="number">
+<button onclick="bmi()">Calculate BMI</button>
 <div class="result" id="bmiResult"></div>
 </div>
 
-
-<!-- GST -->
 <div class="card">
 <h2>GST Calculator</h2>
-
 <label>Amount (₹)</label>
-<input type="number" id="gstAmount" placeholder="Example: 1000">
-
+<input id="gstAmount" type="number">
 <label>GST (%)</label>
-<input type="number" id="gstRate" placeholder="Example: 18">
-
-<button onclick="calculateGST()">Calculate GST</button>
-
+<input id="gstRate" type="number">
+<button onclick="gst()">Calculate GST</button>
 <div class="result" id="gstResult"></div>
 </div>
 
-
-<!-- EMI -->
 <div class="card">
 <h2>EMI Calculator</h2>
-
 <label>Loan Amount (₹)</label>
-<input type="number" id="loanAmount" placeholder="Example: 500000">
-
-<label>Interest Rate (% per year)</label>
-<input type="number" id="interestRate" placeholder="Example: 10">
-
-<label>Loan Tenure (years)</label>
-<input type="number" id="loanYears" placeholder="Example: 5">
-
-<button onclick="calculateEMI()">Calculate EMI</button>
-
+<input id="loan" type="number">
+<label>Interest Rate (% yearly)</label>
+<input id="interest" type="number">
+<label>Tenure (years)</label>
+<input id="years" type="number">
+<button onclick="emi()">Calculate EMI</button>
 <div class="result" id="emiResult"></div>
 </div>
 
-
-<!-- Discount -->
 <div class="card">
 <h2>Discount Calculator</h2>
-
 <label>Original Price (₹)</label>
-<input type="number" id="originalPrice" placeholder="Example: 1000">
-
+<input id="price" type="number">
 <label>Discount (%)</label>
-<input type="number" id="discount" placeholder="Example: 20">
-
-<button onclick="calculateDiscount()">Calculate</button>
-
+<input id="discount" type="number">
+<button onclick="discountCalc()">Calculate</button>
 <div class="result" id="discountResult"></div>
 </div>
 
-
-<!-- Unit Converter -->
 <div class="card">
 <h2>KM ↔ Miles Converter</h2>
-
 <label>Value</label>
-<input type="number" id="unitValue" placeholder="Example: 10">
-
-<select id="unitType">
-<option value="kmMiles">Kilometers → Miles</option>
-<option value="milesKm">Miles → Kilometers</option>
+<input id="distance" type="number">
+<select id="conversion">
+<option value="km">Kilometers to Miles</option>
+<option value="mile">Miles to Kilometers</option>
 </select>
-
-<button onclick="convertUnit()">Convert</button>
-
-<div class="result" id="unitResult"></div>
+<button onclick="convert()">Convert</button>
+<div class="result" id="distanceResult"></div>
 </div>
 
-
-<!-- Simple Calculator -->
 <div class="card">
 <h2>Simple Calculator</h2>
-
 <label>First Number</label>
-<input type="number" id="calc1">
-
+<input id="num1" type="number">
 <label>Second Number</label>
-<input type="number" id="calc2">
-
-<select id="operation">
-<option value="add">Addition (+)</option>
-<option value="sub">Subtraction (-)</option>
-<option value="mul">Multiplication (×)</option>
-<option value="div">Division (÷)</option>
+<input id="num2" type="number">
+<select id="operator">
+<option value="+">Addition (+)</option>
+<option value="-">Subtraction (-)</option>
+<option value="*">Multiplication (×)</option>
+<option value="/">Division (÷)</option>
 </select>
-
-<button onclick="simpleCalculate()">Calculate</button>
-
+<button onclick="calculator()">Calculate</button>
 <div class="result" id="calcResult"></div>
 </div>
 
-
-<h2>More Tools</h2>
-
-<div class="tools">
-<div class="tool-box">
-<h3>Percentage</h3>
-<p>Calculate percentages easily.</p>
 </div>
 
-<div class="tool-box">
-<h3>Age</h3>
-<p>Calculate your exact age.</p>
-</div>
-
-<div class="tool-box">
-<h3>BMI</h3>
-<p>Calculate your BMI.</p>
-</div>
-
-<div class="tool-box">
-<h3>GST</h3>
-<p>Calculate GST amount.</p>
-</div>
-
-<div class="tool-box">
-<h3>EMI</h3>
-<p>Calculate monthly EMI.</p>
-</div>
-
-<div class="tool-box">
-<h3>Discount</h3>
-<p>Calculate discounted price.</p>
-</div>
-</div>
-
-</div>
-
-<footer>
-© 2026 Tool Mitra
-</footer>
-
+<footer>© 2026 Tool Mitra</footer>
 
 <script>
 
-// Percentage
-function calculatePercentage(){
-let p=parseFloat(document.getElementById("percentage").value);
-let n=parseFloat(document.getElementById("number").value);
-let r=document.getElementById("percentageResult");
-
-if(isNaN(p)||isNaN(n)){
-r.innerText="Please enter both values.";
-return;
+function percentage(){
+let p=Number(document.getElementById("percent").value);
+let n=Number(document.getElementById("percentNum").value);
+document.getElementById("percentResult").innerText=
+isNaN(p)||isNaN(n)?"Enter both values":p+"% of "+n+" = "+(p*n/100);
 }
 
-r.innerText=p+"% of "+n+" = "+((p/100)*n);
-}
-
-
-// Age
-function calculateAge(){
-let dob=document.getElementById("dob").value;
-let r=document.getElementById("ageResult");
-
-if(!dob){
-r.innerText="Please select your date of birth.";
-return;
-}
-
-let birth=new Date(dob);
+function age(){
+let d=document.getElementById("dob").value;
+if(!d){document.getElementById("ageResult").innerText="Select your DOB";return}
+let birth=new Date(d);
 let today=new Date();
-
-let years=today.getFullYear()-birth.getFullYear();
-let months=today.getMonth()-birth.getMonth();
-let days=today.getDate()-birth.getDate();
-
-if(days<0){
-months--;
-days+=new Date(today.getFullYear(),today.getMonth(),0).getDate();
+let y=today.getFullYear()-birth.getFullYear();
+let m=today.getMonth()-birth.getMonth();
+let day=today.getDate()-birth.getDate();
+if(day<0){m--;day+=new Date(today.getFullYear(),today.getMonth(),0).getDate()}
+if(m<0){y--;m+=12}
+document.getElementById("ageResult").innerText=y+" years, "+m+" months, "+day+" days";
 }
 
-if(months<0){
-years--;
-months+=12;
+function bmi(){
+let h=Number(document.getElementById("height").value);
+let w=Number(document.getElementById("weight").value);
+if(!h||!w){document.getElementById("bmiResult").innerText="Enter height and weight";return}
+let b=w/((h/100)*(h/100));
+document.getElementById("bmiResult").innerText="Your BMI is "+b.toFixed(1);
 }
 
-r.innerText="Your age is "+years+" years, "+months+" months and "+days+" days.";
+function gst(){
+let a=Number(document.getElementById("gstAmount").value);
+let r=Number(document.getElementById("gstRate").value);
+if(!a||isNaN(r)){document.getElementById("gstResult").innerText="Enter amount and GST rate";return}
+let g=a*r/100;
+document.getElementById("gstResult").innerText="GST: ₹"+g.toFixed(2)+" | Total: ₹"+(a+g).toFixed(2);
 }
 
-
-// BMI
-function calculateBMI(){
-let h=parseFloat(document.getElementById("height").value);
-let w=parseFloat(document.getElementById("weight").value);
-let r=document.getElementById("bmiResult");
-
-if(!h||!w){
-r.innerText="Please enter height and weight.";
-return;
+function emi(){
+let p=Number(document.getElementById("loan").value);
+let r=Number(document.getElementById("interest").value)/12/100;
+let n=Number(document.getElementById("years").value)*12;
+if(!p||isNaN(r)||!n){document.getElementById("emiResult").innerText="Enter all values";return}
+let e=r===0?p/n:p*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);
+document.getElementById("emiResult").innerText="Monthly EMI: ₹"+e.toFixed(2);
 }
 
-let bmi=w/((h/100)*(h/100));
-
-r.innerText="Your BMI is "+bmi.toFixed(1);
+function discountCalc(){
+let p=Number(document.getElementById("price").value);
+let d=Number(document.getElementById("discount").value);
+if(!p||isNaN(d)){document.getElementById("discountResult").innerText="Enter both values";return}
+let save=p*d/100;
+document.getElementById("discountResult").innerText="You save ₹"+save.toFixed(2)+" | Final Price: ₹"+(p-save).toFixed(2);
 }
 
-
-// GST
-function calculateGST(){
-let amount=parseFloat(document.getElementById("gstAmount").value);
-let rate=parseFloat(document.getElementById("gstRate").value);
-let r=document.getElementById("gstResult");
-
-if(isNaN(amount)||isNaN(rate)){
-r.innerText="Please enter amount and GST rate.";
-return;
+function convert(){
+let v=Number(document.getElementById("distance").value);
+let type=document.getElementById("conversion").value;
+if(isNaN(v)){document.getElementById("distanceResult").innerText="Enter a value";return}
+if(type==="km")
+document.getElementById("distanceResult").innerText=v+" km = "+(v*0.621371).toFixed(3)+" miles";
+else
+document.getElementById("distanceResult").innerText=v+" miles = "+(v*1.60934).toFixed(3)+" km";
 }
 
-let gst=amount*rate/100;
-let total=amount+gst;
-
-r.innerText="GST: ₹"+gst.toFixed(2)+" | Total: ₹"+total.toFixed(2);
+function calculator(){
+let a=Number(document.getElementById("num1").value);
+let b=Number(document.getElementById("num2").value);
+let op=document.getElementById("operator").value;
+let ans;
+if(op==="+")ans=a+b;
+if(op==="-")ans=a-b;
+if(op==="*")ans=a*b;
+if(op==="/"){
+if(b===0){document.getElementById("calcResult").innerText="Cannot divide by zero";return}
+ans=a/b;
 }
-
-
-// EMI
-function calculateEMI(){
-let P=parseFloat(document.getElementById("loanAmount").value);
-let annual=parseFloat(document.getElementById("interestRate").value);
-let years=parseFloat(document.getElementById("loanYears").value);
-let r=document.getElementById("emiResult");
-
-if(!P||isNaN(annual)||!years){
-r.innerText="Please enter all values.";
-return;
-}
-
-let monthly=annual/12/100;
-let months=years*12;
-
-let emi;
-
-if(monthly===0){
-emi=P/months;
-}else{
-emi=P*monthly*Math.pow(1+monthly,months)/(Math.pow(1+monthly,months)-1);
-}
-
-r.innerText="Monthly EMI: ₹"+emi.toFixed(2);
-}
-
-
-// Discount
-function calculateDiscount(){
-let price=parseFloat(document.getElementById("originalPrice").value);
-let discount=parseFloat(document.getElementById("discount").value);
-let r=document.getElementById("discountResult");
-
-if(isNaN(price)||isNaN(discount)){
-r.innerText="Please enter both values.";
-return;
-}
-
-let saved=price*discount/100;
-let finalPrice=price-saved;
-
-r.innerText="You save ₹"+saved.toFixed(2)+" | Final Price: ₹"+finalPrice.toFixed(2);
-}
-
-
-// Unit Converter
-function convertUnit(){
-let value=parseFloat(document.getElementById("unitValue").value);
-let type=document.getElementById("unitType").value;
-let r=document.getElementById("unitResult");
-
-if(isNaN(value)){
-r.innerText="Please enter a value.";
-return;
-}
-
-if(type==="kmMiles"){
-r.innerText=value+" km = "+(value*0.621371).toFixed(3)+" miles";
-}else{
-r.innerText=value+" miles = "+(value*1.60934).toFixed(3)+" km";
-}
-}
-
-
-// Simple Calculator
-function simpleCalculate(){
-let a=parseFloat(document.getElementById("calc1").value);
-let b=parseFloat(document.getElementById("calc2").value);
-let op=document.getElementById("operation").value;
-let r=document.getElementById("calcResult");
-
-if(isNaN(a)||isNaN(b)){
-r.innerText="Please enter both numbers.";
-return;
-}
-
-let answer;
-
-if(op==="add") answer=a+b;
-if(op==="sub") answer=a-b;
-if(op==="mul") answer=a*b;
-
-if(op==="div"){
-if(b===0){
-r.innerText="Cannot divide by zero.";
-return;
-}
-answer=a/b;
-}
-
-r.innerText="Answer: "+answer;
+document.getElementById("calcResult").innerText="Answer: "+ans;
 }
 
 </script>
