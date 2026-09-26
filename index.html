@@ -15,7 +15,20 @@ header{background:#111827;color:white;text-align:center;padding:25px 15px}
 header h1{margin:0;font-size:32px}
 header p{color:#d1d5db}
 .container{max-width:750px;margin:25px auto;padding:15px}
-.card{background:white;padding:22px;margin-bottom:20px;border-radius:15px;box-shadow:0 4px 15px #00000012}
+..card{
+background:white;
+padding:22px;
+margin-bottom:20px;
+border-radius:15px;
+box-shadow:0 4px 15px #00000012;
+border:1px solid #e5e7eb;
+transition:transform .2s,box-shadow .2s;
+}
+
+.card:hover{
+transform:translateY(-3px);
+box-shadow:0 8px 25px #00000018;
+}
 h2{text-align:center}
 label{display:block;margin-top:12px;font-weight:bold}
 input,select{width:100%;padding:12px;margin-top:6px;border:1px solid #ccc;border-radius:8px;font-size:16px}
