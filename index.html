@@ -14,7 +14,20 @@ body{margin:0;font-family:Arial,sans-serif;background:#f5f7fb;color:#222}
 header{background:#111827;color:white;text-align:center;padding:25px 15px}
 header h1{margin:0;font-size:32px}
 header p{color:#d1d5db}
-.container{max-width:750px;margin:25px auto;padding:15px}
+.container{
+max-width:1100px;
+margin:25px auto;
+padding:15px;
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:20px;
+}
+
+@media(max-width:700px){
+.container{
+grid-template-columns:1fr;
+}
+}
 ..card{
 background:white;
 padding:22px;
