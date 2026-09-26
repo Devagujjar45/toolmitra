@@ -1,286 +1,472 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> Tool Mitra - Free Online Tools</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> Tool Mitra - Free Online Tools</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<style>
+*{box-sizing:border-box}
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f7fb;
-      color: #222;
-    }
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#f5f7fb;
+color:#222;
+}
 
-    header {
-      background: #111827;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
+header{
+background:#111827;
+color:white;
+padding:25px 15px;
+text-align:center;
+}
 
-    header h1 {
-      margin: 0;
-      font-size: 30px;
-    }
+header h1{margin:0;font-size:32px}
+header p{margin:8px 0 0;color:#d1d5db}
 
-    header p {
-      margin: 8px 0 0;
-      color: #d1d5db;
-    }
+.container{
+max-width:750px;
+margin:25px auto;
+padding:15px;
+}
 
-    .container {
-      max-width: 700px;
-      margin: 30px auto;
-      padding: 15px;
-    }
+.card{
+background:white;
+border-radius:16px;
+padding:22px;
+margin-bottom:22px;
+box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
 
-    .card {
-      background: white;
-      border-radius: 16px;
-      padding: 25px;
-      margin-bottom: 25px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-    }
+h2{text-align:center;margin-top:0}
 
-    h2 {
-      margin-top: 0;
-      text-align: center;
-    }
+label{
+display:block;
+margin-top:13px;
+margin-bottom:6px;
+font-weight:bold;
+}
 
-    label {
-      display: block;
-      margin-top: 15px;
-      margin-bottom: 7px;
-      font-weight: bold;
-    }
+input,select{
+width:100%;
+padding:13px;
+border:1px solid #ccc;
+border-radius:9px;
+font-size:16px;
+}
 
-    input {
-      width: 100%;
-      padding: 13px;
-      border: 1px solid #ccc;
-      border-radius: 9px;
-      font-size: 16px;
-    }
+button{
+width:100%;
+padding:13px;
+margin-top:17px;
+border:0;
+border-radius:9px;
+background:#111827;
+color:white;
+font-size:16px;
+}
 
-    button {
-      width: 100%;
-      padding: 13px;
-      margin-top: 18px;
-      border: none;
-      border-radius: 9px;
-      background: #111827;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
-    }
+.result{
+margin-top:18px;
+padding:14px;
+background:#f0fdf4;
+border-radius:9px;
+text-align:center;
+font-weight:bold;
+min-height:20px;
+}
 
-    button:hover {
-      opacity: 0.9;
-    }
+.tools{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:14px;
+}
 
-    .result {
-      margin-top: 20px;
-      padding: 15px;
-      background: #f0fdf4;
-      border-radius: 9px;
-      text-align: center;
-      font-weight: bold;
-      min-height: 25px;
-    }
+.tool-box{
+background:white;
+padding:18px;
+border-radius:12px;
+text-align:center;
+box-shadow:0 4px 15px rgba(0,0,0,.06);
+}
 
-    .tools {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 15px;
-    }
+footer{
+text-align:center;
+padding:25px;
+color:#666;
+}
 
-    .tool-box {
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      text-align: center;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-    }
-
-    footer {
-      text-align: center;
-      padding: 25px;
-      color: #666;
-    }
-
-    @media (max-width: 600px) {
-      .tools {
-        grid-template-columns: 1fr;
-      }
-
-      header h1 {
-        font-size: 25px;
-      }
-    }
-  </style>
+@media(max-width:600px){
+.tools{grid-template-columns:1fr}
+header h1{font-size:27px}
+}
+</style>
 </head>
 
 <body>
 
 <header>
-  <h1>Tool Mitra</h1>
-  <p>Free & Simple Online Tools</p>
+<h1>Tool Mitra</h1>
+<p>Free & Simple Online Tools</p>
 </header>
 
 <div class="container">
 
-  <!-- Percentage Calculator -->
-  <div class="card">
-    <h2>Percentage Calculator</h2>
-
-    <label for="percentage">Percentage (%)</label>
-    <input type="number" id="percentage" placeholder="Example: 20">
-
-    <label for="number">Number</label>
-    <input type="number" id="number" placeholder="Example: 500">
-
-    <button onclick="calculatePercentage()">Calculate</button>
-
-    <div class="result" id="percentageResult"></div>
-  </div>
-
-
-  <!-- Age Calculator -->
-  <div class="card">
-    <h2>Age Calculator</h2>
-
-    <label for="dob">Date of Birth</label>
-    <input type="date" id="dob">
-
-    <button onclick="calculateAge()">Calculate Age</button>
-
-    <div class="result" id="ageResult"></div>
-  </div>
-
-<!-- BMI Calculator -->
+<!-- Percentage -->
 <div class="card">
-  <h2>BMI Calculator</h2>
+<h2>Percentage Calculator</h2>
 
-  <label for="height">Height (cm)</label>
-  <input type="number" id="height" placeholder="Example: 172">
+<label>Percentage (%)</label>
+<input type="number" id="percentage" placeholder="Example: 20">
 
-  <label for="weight">Weight (kg)</label>
-  <input type="number" id="weight" placeholder="Example: 63">
+<label>Number</label>
+<input type="number" id="number" placeholder="Example: 500">
 
-  <button onclick="calculateBMI()">Calculate BMI</button>
+<button onclick="calculatePercentage()">Calculate</button>
 
-  <div class="result" id="bmiResult"></div>
+<div class="result" id="percentageResult"></div>
 </div>
-  <!-- More Tools -->
-  <h2>More Tools</h2>
 
-  <div class="tools">
-    <div class="tool-box">
-      <h3>Percentage</h3>
-      <p>Calculate percentages easily.</p>
-    </div>
 
-    <div class="tool-box">
-      <h3>Age Calculator</h3>
-      <p>Calculate your exact age.</p>
-    </div>
-  </div>
+<!-- Age -->
+<div class="card">
+<h2>Age Calculator</h2>
+
+<label>Date of Birth</label>
+<input type="date" id="dob">
+
+<button onclick="calculateAge()">Calculate Age</button>
+
+<div class="result" id="ageResult"></div>
+</div>
+
+
+<!-- BMI -->
+<div class="card">
+<h2>BMI Calculator</h2>
+
+<label>Height (cm)</label>
+<input type="number" id="height" placeholder="Example: 172">
+
+<label>Weight (kg)</label>
+<input type="number" id="weight" placeholder="Example: 63">
+
+<button onclick="calculateBMI()">Calculate BMI</button>
+
+<div class="result" id="bmiResult"></div>
+</div>
+
+
+<!-- GST -->
+<div class="card">
+<h2>GST Calculator</h2>
+
+<label>Amount (₹)</label>
+<input type="number" id="gstAmount" placeholder="Example: 1000">
+
+<label>GST (%)</label>
+<input type="number" id="gstRate" placeholder="Example: 18">
+
+<button onclick="calculateGST()">Calculate GST</button>
+
+<div class="result" id="gstResult"></div>
+</div>
+
+
+<!-- EMI -->
+<div class="card">
+<h2>EMI Calculator</h2>
+
+<label>Loan Amount (₹)</label>
+<input type="number" id="loanAmount" placeholder="Example: 500000">
+
+<label>Interest Rate (% per year)</label>
+<input type="number" id="interestRate" placeholder="Example: 10">
+
+<label>Loan Tenure (years)</label>
+<input type="number" id="loanYears" placeholder="Example: 5">
+
+<button onclick="calculateEMI()">Calculate EMI</button>
+
+<div class="result" id="emiResult"></div>
+</div>
+
+
+<!-- Discount -->
+<div class="card">
+<h2>Discount Calculator</h2>
+
+<label>Original Price (₹)</label>
+<input type="number" id="originalPrice" placeholder="Example: 1000">
+
+<label>Discount (%)</label>
+<input type="number" id="discount" placeholder="Example: 20">
+
+<button onclick="calculateDiscount()">Calculate</button>
+
+<div class="result" id="discountResult"></div>
+</div>
+
+
+<!-- Unit Converter -->
+<div class="card">
+<h2>KM ↔ Miles Converter</h2>
+
+<label>Value</label>
+<input type="number" id="unitValue" placeholder="Example: 10">
+
+<select id="unitType">
+<option value="kmMiles">Kilometers → Miles</option>
+<option value="milesKm">Miles → Kilometers</option>
+</select>
+
+<button onclick="convertUnit()">Convert</button>
+
+<div class="result" id="unitResult"></div>
+</div>
+
+
+<!-- Simple Calculator -->
+<div class="card">
+<h2>Simple Calculator</h2>
+
+<label>First Number</label>
+<input type="number" id="calc1">
+
+<label>Second Number</label>
+<input type="number" id="calc2">
+
+<select id="operation">
+<option value="add">Addition (+)</option>
+<option value="sub">Subtraction (-)</option>
+<option value="mul">Multiplication (×)</option>
+<option value="div">Division (÷)</option>
+</select>
+
+<button onclick="simpleCalculate()">Calculate</button>
+
+<div class="result" id="calcResult"></div>
+</div>
+
+
+<h2>More Tools</h2>
+
+<div class="tools">
+<div class="tool-box">
+<h3>Percentage</h3>
+<p>Calculate percentages easily.</p>
+</div>
+
+<div class="tool-box">
+<h3>Age</h3>
+<p>Calculate your exact age.</p>
+</div>
+
+<div class="tool-box">
+<h3>BMI</h3>
+<p>Calculate your BMI.</p>
+</div>
+
+<div class="tool-box">
+<h3>GST</h3>
+<p>Calculate GST amount.</p>
+</div>
+
+<div class="tool-box">
+<h3>EMI</h3>
+<p>Calculate monthly EMI.</p>
+</div>
+
+<div class="tool-box">
+<h3>Discount</h3>
+<p>Calculate discounted price.</p>
+</div>
+</div>
 
 </div>
 
 <footer>
-  © 2026 Tool Mitra
+© 2026 Tool Mitra
 </footer>
 
 
 <script>
 
-  // Percentage Calculator
-  function calculatePercentage() {
-    const percentage = parseFloat(
-      document.getElementById("percentage").value
-    );
+// Percentage
+function calculatePercentage(){
+let p=parseFloat(document.getElementById("percentage").value);
+let n=parseFloat(document.getElementById("number").value);
+let r=document.getElementById("percentageResult");
 
-    const number = parseFloat(
-      document.getElementById("number").value
-    );
-
-    const result = document.getElementById("percentageResult");
-
-    if (isNaN(percentage) || isNaN(number)) {
-      result.innerText = "Please enter both values.";
-      return;
-    }
-
-    const answer = (percentage / 100) * number;
-
-    result.innerText =
-      percentage + "% of " + number + " = " + answer;
-  }
-
-
-  // Age Calculator
-  function calculateAge() {
-    const dobInput = document.getElementById("dob").value;
-    const result = document.getElementById("ageResult");
-
-    if (!dobInput) {
-      result.innerText = "Please select your date of birth.";
-      return;
-    }
-
-    const parts = dobInput.split("-");
-
-    const birthYear = Number(parts[0]);
-    const birthMonth = Number(parts[1]);
-    const birthDay = Number(parts[2]);
-
-    const today = new Date();
-
-    let years = today.getFullYear() - birthYear;
-    let months = (today.getMonth() + 1) - birthMonth;
-    let days = today.getDate() - birthDay;
-
-    if (days < 0) {
-      months--;
-
-      const previousMonthDays =
-        new Date(today.getFullYear(), today.getMonth(), 0).getDate();
-
-      days += previousMonthDays;
-    }
-
-    if (months < 0) {
-      years--;
-      months += 12;
-    }
-
-    result.innerText =
-      "Your age is " +
-      years + " years, " +
-      months + " months and " +
-      days + " days.";
-  }
-function calculateBMI() {
-  const height = parseFloat(document.getElementById("height").value);
-  const weight = parseFloat(document.getElementById("weight").value);
-  const result = document.getElementById("bmiResult");
-
-  if (!height || !weight) {
-    result.innerText = "Please enter height and weight.";
-    return;
-  }
-
-  const bmi = weight / ((height / 100) * (height / 100));
-
-  result.innerText = "Your BMI is " + bmi.toFixed(1);
+if(isNaN(p)||isNaN(n)){
+r.innerText="Please enter both values.";
+return;
 }
+
+r.innerText=p+"% of "+n+" = "+((p/100)*n);
+}
+
+
+// Age
+function calculateAge(){
+let dob=document.getElementById("dob").value;
+let r=document.getElementById("ageResult");
+
+if(!dob){
+r.innerText="Please select your date of birth.";
+return;
+}
+
+let birth=new Date(dob);
+let today=new Date();
+
+let years=today.getFullYear()-birth.getFullYear();
+let months=today.getMonth()-birth.getMonth();
+let days=today.getDate()-birth.getDate();
+
+if(days<0){
+months--;
+days+=new Date(today.getFullYear(),today.getMonth(),0).getDate();
+}
+
+if(months<0){
+years--;
+months+=12;
+}
+
+r.innerText="Your age is "+years+" years, "+months+" months and "+days+" days.";
+}
+
+
+// BMI
+function calculateBMI(){
+let h=parseFloat(document.getElementById("height").value);
+let w=parseFloat(document.getElementById("weight").value);
+let r=document.getElementById("bmiResult");
+
+if(!h||!w){
+r.innerText="Please enter height and weight.";
+return;
+}
+
+let bmi=w/((h/100)*(h/100));
+
+r.innerText="Your BMI is "+bmi.toFixed(1);
+}
+
+
+// GST
+function calculateGST(){
+let amount=parseFloat(document.getElementById("gstAmount").value);
+let rate=parseFloat(document.getElementById("gstRate").value);
+let r=document.getElementById("gstResult");
+
+if(isNaN(amount)||isNaN(rate)){
+r.innerText="Please enter amount and GST rate.";
+return;
+}
+
+let gst=amount*rate/100;
+let total=amount+gst;
+
+r.innerText="GST: ₹"+gst.toFixed(2)+" | Total: ₹"+total.toFixed(2);
+}
+
+
+// EMI
+function calculateEMI(){
+let P=parseFloat(document.getElementById("loanAmount").value);
+let annual=parseFloat(document.getElementById("interestRate").value);
+let years=parseFloat(document.getElementById("loanYears").value);
+let r=document.getElementById("emiResult");
+
+if(!P||isNaN(annual)||!years){
+r.innerText="Please enter all values.";
+return;
+}
+
+let monthly=annual/12/100;
+let months=years*12;
+
+let emi;
+
+if(monthly===0){
+emi=P/months;
+}else{
+emi=P*monthly*Math.pow(1+monthly,months)/(Math.pow(1+monthly,months)-1);
+}
+
+r.innerText="Monthly EMI: ₹"+emi.toFixed(2);
+}
+
+
+// Discount
+function calculateDiscount(){
+let price=parseFloat(document.getElementById("originalPrice").value);
+let discount=parseFloat(document.getElementById("discount").value);
+let r=document.getElementById("discountResult");
+
+if(isNaN(price)||isNaN(discount)){
+r.innerText="Please enter both values.";
+return;
+}
+
+let saved=price*discount/100;
+let finalPrice=price-saved;
+
+r.innerText="You save ₹"+saved.toFixed(2)+" | Final Price: ₹"+finalPrice.toFixed(2);
+}
+
+
+// Unit Converter
+function convertUnit(){
+let value=parseFloat(document.getElementById("unitValue").value);
+let type=document.getElementById("unitType").value;
+let r=document.getElementById("unitResult");
+
+if(isNaN(value)){
+r.innerText="Please enter a value.";
+return;
+}
+
+if(type==="kmMiles"){
+r.innerText=value+" km = "+(value*0.621371).toFixed(3)+" miles";
+}else{
+r.innerText=value+" miles = "+(value*1.60934).toFixed(3)+" km";
+}
+}
+
+
+// Simple Calculator
+function simpleCalculate(){
+let a=parseFloat(document.getElementById("calc1").value);
+let b=parseFloat(document.getElementById("calc2").value);
+let op=document.getElementById("operation").value;
+let r=document.getElementById("calcResult");
+
+if(isNaN(a)||isNaN(b)){
+r.innerText="Please enter both numbers.";
+return;
+}
+
+let answer;
+
+if(op==="add") answer=a+b;
+if(op==="sub") answer=a-b;
+if(op==="mul") answer=a*b;
+
+if(op==="div"){
+if(b===0){
+r.innerText="Cannot divide by zero.";
+return;
+}
+answer=a/b;
+}
+
+r.innerText="Answer: "+answer;
+}
+
 </script>
 
 </body>
