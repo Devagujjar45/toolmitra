@@ -74,28 +74,110 @@ footer{text-align:center;padding:25px;color:#666}
 <div class="container">
 
 
- <div class="card">
-  <h2>🧮 Universal Math Solver</h2>
-  <p>Enter a mathematical expression and get the answer.</p>
+ <div class="card" style="grid-column:1/-1;">
 
-  <input
-    type="text"
-    id="mathExpression"
-    placeholder="Example: sin(30) + cos(60)"
-    style="width:100%;padding:12px;margin:8px 0;border:1px solid #ddd;border-radius:8px;box-sizing:border-box;"
-  >
+  <div style="text-align:center;margin-bottom:20px;">
+    <div style="font-size:42px;">🧮</div>
 
-  <select id="angleMode"
-    style="width:100%;padding:12px;margin:8px 0;border:1px solid #ddd;border-radius:8px;">
-    <option value="deg">Degrees</option>
-    <option value="rad">Radians</option>
-  </select>
+    <h2 style="font-size:28px;margin:8px 0;">
+      Universal Math Solver
+    </h2>
 
-  <button onclick="solveMath()">
-    Solve
-  </button>
+    <p style="color:#666;margin:0;">
+      Solve Maths • Algebra • Trigonometry • Powers • Roots • Log
+    </p>
+  </div>
 
-  <div id="mathResult" style="margin-top:15px;"></div>
+  <textarea
+    id="mathQuestion"
+    placeholder="Type your question here...&#10;&#10;Example: 2x + 5 = 15&#10;Example: sin(30) + cos(60)&#10;Example: √25 + 5²"
+    rows="5"
+    style="
+      width:100%;
+      padding:16px;
+      border:2px solid #e5e7eb;
+      border-radius:12px;
+      box-sizing:border-box;
+      font-size:18px;
+      resize:vertical;
+      outline:none;
+    "
+  ></textarea>
+
+  <div style="
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:8px;
+    margin-top:12px;
+  ">
+
+    <button onclick="addMath('7')">7</button>
+    <button onclick="addMath('8')">8</button>
+    <button onclick="addMath('9')">9</button>
+    <button onclick="addMath('+')">+</button>
+    <button onclick="addMath('(')">(</button>
+    <button onclick="addMath(')')">)</button>
+
+    <button onclick="addMath('4')">4</button>
+    <button onclick="addMath('5')">5</button>
+    <button onclick="addMath('6')">6</button>
+    <button onclick="addMath('-')">−</button>
+    <button onclick="addMath('√(')">√</button>
+    <button onclick="addMath('^2')">x²</button>
+
+    <button onclick="addMath('1')">1</button>
+    <button onclick="addMath('2')">2</button>
+    <button onclick="addMath('3')">3</button>
+    <button onclick="addMath('×')">×</button>
+    <button onclick="addMath('sin(')">sin</button>
+    <button onclick="addMath('cos(')">cos</button>
+
+    <button onclick="addMath('0')">0</button>
+    <button onclick="addMath('.')">.</button>
+    <button onclick="addMath('/')">÷</button>
+    <button onclick="addMath('tan(')">tan</button>
+    <button onclick="addMath('log(')">log</button>
+    <button onclick="backspaceMath()">⌫</button>
+
+  </div>
+
+  <div style="
+    display:flex;
+    gap:10px;
+    margin-top:14px;
+    flex-wrap:wrap;
+  ">
+
+    <button
+      onclick="clearMath()"
+      style="flex:1;min-width:120px;padding:14px;border:1px solid #ddd;border-radius:10px;background:#f3f4f6;font-size:16px;"
+    >
+      🗑️ Clear
+    </button>
+
+    <button
+      onclick="solveClass10Math()"
+      style="flex:2;min-width:180px;padding:14px;border:0;border-radius:10px;background:#111827;color:white;font-size:17px;font-weight:bold;"
+    >
+      🔍 Solve Question
+    </button>
+
+  </div>
+
+  <div style="
+    margin-top:15px;
+    padding:12px;
+    background:#f8fafc;
+    border-radius:10px;
+    text-align:center;
+    font-size:14px;
+  ">
+    🎯 Free questions remaining:
+    <strong id="freeQuestions">10</strong>
+  </div>
+
+  <div id="class10MathResult" style="margin-top:18px;"></div>
+
 </div>
 
 <div class="card">
