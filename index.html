@@ -73,6 +73,31 @@ footer{text-align:center;padding:25px;color:#666}
 
 <div class="container">
 
+
+ <div class="card">
+  <h2>🧮 Universal Math Solver</h2>
+  <p>Enter a mathematical expression and get the answer.</p>
+
+  <input
+    type="text"
+    id="mathExpression"
+    placeholder="Example: sin(30) + cos(60)"
+    style="width:100%;padding:12px;margin:8px 0;border:1px solid #ddd;border-radius:8px;box-sizing:border-box;"
+  >
+
+  <select id="angleMode"
+    style="width:100%;padding:12px;margin:8px 0;border:1px solid #ddd;border-radius:8px;">
+    <option value="deg">Degrees</option>
+    <option value="rad">Radians</option>
+  </select>
+
+  <button onclick="solveMath()">
+    Solve
+  </button>
+
+  <div id="mathResult" style="margin-top:15px;"></div>
+</div>
+
 <div class="card">
 <h2>📊Percentage Calculator</h2>
 <label>Percentage (%)</label>
