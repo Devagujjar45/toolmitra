@@ -391,6 +391,267 @@ function searchTools(){
     }
   });
 }
+ function addMath(value){
+  let box = document.getElementById("mathQuestion");
+
+  let start = box.selectionStart;
+  let end = box.selectionEnd;
+
+  box.value =
+    box.value.substring(0,start) +
+    value +
+    box.value.substring(end);
+
+  box.focus();
+
+  let newPos = start + value.length;
+  box.setSelectionRange(newPos,newPos);
+}
+
+function backspaceMath(){
+  let box = document.getElementById("mathQuestion");
+  let start = box.selectionStart;
+  let end = box.selectionEnd;
+
+  if(start !== end){
+    box.value =
+      box.value.substring(0,start) +
+      box.value.substring(end);
+    box.setSelectionRange(start,start);
+  }
+  else if(start > 0){
+    box.value =
+      box.value.substring(0,start-1) +
+      box.value.substring(end);
+
+    box.setSelectionRange(start-1,start-1);
+  }
+
+  box.focus();
+}
+
+function clearMath(){
+  document.getElementById("mathQuestion").value="";
+  document.getElementById("class10MathResult").innerHTML="";
+  document.getElementById("mathQuestion").focus();
+}
+
+function solveClass10Math(){
+
+  let box=document.getElementById("mathQuestion");
+  let result=document.getElementById("class10MathResult");
+  let counter=document.getElementById("freeQuestions");
+
+  let question=box.value.trim();
+
+  if(!question){
+    result.innerHTML=
+      "<div style='padding:15px;background:#fff7ed;border-radius:10px;color:#9a3412;'>"+
+      "⚠️ Pehle maths question enter karo."+
+      "</div>";
+    return;
+  }
+
+  let used=Number(localStorage.getItem("toolMitraMathCount")||0);
+
+  if(used>=10){
+    result.innerHTML=
+      "<div style='padding:20px;background:#fff7ed;border-radius:12px;text-align:center;'>"+
+      "<strong style='font-size:20px;'>🔐 Free limit complete</strong><br><br>"+
+      "Aap 10 free questions solve kar chuke ho.<br>"+
+      "Continue karne ke liye login karna hoga."+
+      "<br><br>"+
+      "<button onclick='showMathLogin()' style='padding:12px 20px;border:0;border-radius:8px;background:#111827;color:white;'>"+
+      "Login / Sign Up"+
+      "</button>"+
+      "</div>";
+    return;
+  }
+
+  result.innerHTML=
+    "<div style='padding:18px;text-align:center;background:#f8fafc;border-radius:12px;'>"+
+    "<div style='font-size:30px;'>⚙️</div>"+
+    "<strong>Solving your question...</strong>"+
+    "<div style='margin-top:10px;color:#666;'>Please wait</div>"+
+    "</div>";
+
+  setTimeout(function(){
+
+    try{
+
+      let expression=question;
+
+      expression=expression
+        .replace(/×/g,"*")
+        .replace(/÷/g,"/")
+        .replace(/−/g,"-")
+        .replace(/²/g,"^2")
+        .replace(/√/g,"sqrt");
+
+      let answer;
+
+      /*
+       Basic safe calculator:
+       Only mathematical characters/functions are allowed.
+      */
+
+      if(!/^[0-9+\-*/().%^,\s_a-zA-Z√²]+$/.test(expression)){
+        throw new Error("Invalid characters");
+      }
+
+      let allowed={
+        sin:function(x){return Math.sin(x*Math.PI/180)},
+        cos:function(x){return Math.cos(x*Math.PI/180)},
+        tan:function(x){return Math.tan(x*Math.PI/180)},
+        sqrt:function(x){return Math.sqrt(x)},
+        log:function(x){return Math.log10(x)},
+        abs:function(x){return Math.abs(x)},
+        pi:Math.PI
+      };
+
+      let clean=expression.toLowerCase();
+
+      if(!/^[0-9+\-*/().%^,\s_a-z]+$/.test(clean)){
+        throw new Error("Invalid expression");
+      }
+
+      /*
+       Convert powers and calculate only supported
+       mathematical expressions.
+      */
+
+      let jsExpression=clean
+        .replace(/\^/g,"**")
+        .replace(/sqrt/g,"Math.sqrt")
+        .replace(/sin/g,"Math.sin")
+        .replace(/cos/g,"Math.cos")
+        .replace(/tan/g,"Math.tan")
+        .replace(/log/g,"Math.log10")
+        .replace(/abs/g,"Math.abs")
+        .replace(/\bpi\b/g,"Math.PI");
+
+      /*
+       Trigonometry uses degrees.
+      */
+
+      jsExpression=jsExpression
+        .replace(/Math\.sin\(([^()]*)\)/g,
+          "Math.sin(($1)*Math.PI/180)")
+        .replace(/Math\.cos\(([^()]*)\)/g,
+          "Math.cos(($1)*Math.PI/180)")
+        .replace(/Math\.tan\(([^()]*)\)/g,
+          "Math.tan(($1)*Math.PI/180)");
+
+      /*
+       Mathematical evaluation after validation.
+      */
+
+      if(!/^[0-9+\-*/().\s*]+$/.test(
+        jsExpression
+          .replace(/Math\.sqrt/g,"")
+          .replace(/Math\.sin/g,"")
+          .replace(/Math\.cos/g,"")
+          .replace(/Math\.tan/g,"")
+          .replace(/Math\.log10/g,"")
+          .replace(/Math\.abs/g,"")
+          .replace(/Math\.PI/g,"")
+      )){
+        throw new Error("Unsupported expression");
+      }
+
+      answer=Function(
+        '"use strict"; return ('+jsExpression+')'
+      )();
+
+      if(!Number.isFinite(answer)){
+        throw new Error("Invalid result");
+      }
+
+      used++;
+
+      localStorage.setItem(
+        "toolMitraMathCount",
+        used
+      );
+
+      if(counter){
+        counter.innerText=Math.max(0,10-used);
+      }
+
+      let formatted=
+        Number.isInteger(answer)
+        ? answer
+        : Number(answer.toFixed(8));
+
+      result.innerHTML=
+        "<div style='padding:18px;background:#f0fdf4;border-radius:12px;border:1px solid #bbf7d0;'>"+
+
+        "<div style='font-size:14px;color:#166534;'>"+
+        "✅ Solution Found"+
+        "</div>"+
+
+        "<div style='font-size:26px;font-weight:bold;margin:8px 0;'>"+
+        "Answer: "+formatted+
+        "</div>"+
+
+        "<div style='margin-top:15px;padding:15px;background:white;border-radius:10px;text-align:left;'>"+
+
+        "<strong>📖 Step-by-Step</strong><br><br>"+
+
+        "<strong>Question:</strong><br>"+
+        question+
+
+        "<br><br>"+
+
+        "<strong>Expression:</strong><br>"+
+        expression+
+
+        "<br><br>"+
+
+        "<strong>Calculation:</strong><br>"+
+        "The expression is evaluated according to mathematical order of operations (BODMAS)."+
+
+        "<br><br>"+
+
+        "<strong>Final Answer:</strong><br>"+
+        formatted+
+
+        "</div>"+
+
+        "</div>";
+
+    }
+    catch(error){
+
+      result.innerHTML=
+        "<div style='padding:15px;background:#fef2f2;border-radius:10px;color:#991b1b;'>"+
+        "<strong>❌ Question samajh nahi aaya.</strong><br><br>"+
+        "Example try karo:<br>"+
+        "• 25 + 35 × 2<br>"+
+        "• sqrt(25) + 5^2<br>"+
+        "• sin(30) + cos(60)<br>"+
+        "• log(100) + 2^3"+
+        "</div>";
+
+    }
+
+  },900);
+}
+
+function showMathLogin(){
+
+  let result=document.getElementById("class10MathResult");
+
+  result.innerHTML=
+    "<div style='padding:20px;background:white;border:1px solid #ddd;border-radius:12px;text-align:center;'>"+
+    "<h3>🔐 Login Required</h3>"+
+    "<p>10 free questions complete ho gaye.</p>"+
+    "<input type='email' placeholder='Enter your email' style='width:100%;padding:12px;border:1px solid #ddd;border-radius:8px;box-sizing:border-box;margin:8px 0;'>"+
+    "<button style='width:100%;padding:12px;border:0;border-radius:8px;background:#111827;color:white;'>"+
+    "Continue"+
+    "</button>"+
+    "</div>";
+}
 </script>
 
 </body>
