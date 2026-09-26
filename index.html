@@ -179,8 +179,25 @@ footer{text-align:center;padding:25px;color:#666}
 function percentage(){
 let p=Number(document.getElementById("percent").value);
 let n=Number(document.getElementById("percentNum").value);
-document.getElementById("percentResult").innerText=
-isNaN(p)||isNaN(n)?"Enter both values":p+"% of "+n+" = "+(p*n/100);
+let result=document.getElementById("percentResult");
+
+if(isNaN(p)||isNaN(n)){
+result.innerHTML="Enter both values";
+return;
+}
+
+let answer=p*n/100;
+
+result.innerHTML=
+"<strong style='font-size:20px;'>Result: "+answer+"</strong>"+
+"<div style='margin-top:12px;padding:12px;background:#f8fafc;border-radius:10px;text-align:left;'>"+
+"<strong>📊 Calculation Breakdown</strong><br><br>"+
+"Percentage = "+p+"%<br>"+
+"Number = "+n+"<br>"+
+"Formula = ("+p+" ÷ 100) × "+n+"<br>"+
+"Calculation = "+p+" ÷ 100 × "+n+"<br>"+
+"<strong>Answer = "+answer+"</strong>"+
+"</div>";
 }
 
 function age(){
