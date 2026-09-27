@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>KM to Miles Converter - Tool Mitra</title>
+<meta name="description" content="Free KM to Miles and Miles to KM converter. Convert distance instantly with Tool Mitra.">
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
+}
+
+body{
+  background:#070b14;
+  color:#fff;
+  min-height:100vh;
+}
+
+header{
+  padding:18px;
+  text-align:center;
+  border-bottom:1px solid #20283a;
+}
+
+header a{
+  color:#00eaff;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+.container{
+  max-width:500px;
+  margin:45px auto;
+  padding:20px;
+}
+
+.back{
+  display:inline-block;
+  margin-bottom:20px;
+  color:#9ba7ba;
+  text-decoration:none;
+}
+
+.back:hover{
+  color:#00eaff;
+}
+
+.card{
+  background:#101827;
+  border:1px solid #263247;
+  border-radius:20px;
+  padding:28px;
+  box-shadow:0 0 30px rgba(0,234,255,.08);
+}
+
+h1{
+  text-align:center;
+  color:#00eaff;
+  margin-bottom:10px;
+}
+
+.subtitle{
+  text-align:center;
+  color:#9ba7ba;
+  margin-bottom:28px;
+}
+
+label{
+  display:block;
+  margin:15px 0 8px;
+  color:#dce4f2;
+}
+
+input,select{
+  width:100%;
+  padding:14px;
+  border-radius:10px;
+  border:1px solid #34415a;
+  background:#080d18;
+  color:white;
+  font-size:16px;
+  outline:none;
+}
+
+input:focus,select:focus{
+  border-color:#00eaff;
+}
+
+button{
+  width:100%;
+  margin-top:24px;
+  padding:15px;
+  border:none;
+  border-radius:12px;
+  background:#00eaff;
+  color:#001018;
+  font-size:17px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+button:hover{
+  opacity:.9;
+}
+
+.result{
+  margin-top:25px;
+  padding:20px;
+  background:#080d18;
+  border-radius:14px;
+  border:1px solid #263247;
+  line-height:2;
+  text-align:center;
+}
+
+.result strong{
+  color:#00eaff;
+}
+
+footer{
+  text-align:center;
+  padding:30px 15px;
+  color:#667085;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <a href="index.html">⚡ Tool Mitra</a>
+</header>
+
+<div class="container">
+
+<a href="tools.html" class="back">← Back to All Tools</a>
+
+<div class="card">
+
+<h1>KM ↔ Miles</h1>
+
+<p class="subtitle">
+Convert kilometres and miles instantly.
+</p>
+
+<label>Enter Distance</label>
+<input type="number" id="distance" placeholder="Enter value">
+
+<label>Convert</label>
+<select id="conversion">
+  <option value="kmToMiles">Kilometres → Miles</option>
+  <option value="milesToKm">Miles → Kilometres</option>
+</select>
+
+<button onclick="convertDistance()">Convert</button>
+
+<div class="result" id="result">
+Enter a value and click Convert.
+</div>
+
+</div>
+</div>
+
+<footer>
+© 2026 Tool Mitra
+</footer>
+
+<script>
+function convertDistance(){
+
+  let distance = parseFloat(document.getElementById("distance").value);
+  let conversion = document.getElementById("conversion").value;
+
+  if(isNaN(distance)){
+    document.getElementById("result").innerHTML =
+      "Please enter a valid distance.";
+    return;
+  }
+
+  if(distance < 0){
+    document.getElementById("result").innerHTML =
+      "Please enter a positive value.";
+    return;
+  }
+
+  let result;
+
+  if(conversion === "kmToMiles"){
+    result = distance * 0.621371;
+
+    document.getElementById("result").innerHTML =
+      "<strong>" + distance + " KM</strong> = " +
+      "<strong>" + result.toFixed(4) + " Miles</strong>";
+  }
+  else{
+    result = distance * 1.609344;
+
+    document.getElementById("result").innerHTML =
+      "<strong>" + distance + " Miles</strong> = " +
+      "<strong>" + result.toFixed(4) + " KM</strong>";
+  }
+}
+</script>
+
+</body>
+</html>
