@@ -236,237 +236,316 @@ footer a:hover{
     font-size:10px;
   }
 }
+ .home{
+  max-width:1100px;
+  margin:auto;
+  padding:20px 15px 50px;
+}
+
+.hero{
+  min-height:480px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+
+.hero:before{
+  content:"";
+  position:absolute;
+  width:350px;
+  height:350px;
+  background:#6366f1;
+  filter:blur(130px);
+  opacity:.15;
+  border-radius:50%;
+  animation:floatGlow 5s ease-in-out infinite alternate;
+}
+
+@keyframes floatGlow{
+  from{transform:translate(-80px,-20px)}
+  to{transform:translate(80px,30px)}
+}
+
+.badge{
+  position:relative;
+  padding:8px 16px;
+  border:1px solid #334155;
+  border-radius:50px;
+  color:#67e8f9;
+  background:#0f172a;
+  font-size:12px;
+  letter-spacing:1.5px;
+}
+
+.hero h1{
+  position:relative;
+  margin:22px 0 12px;
+  font-size:clamp(45px,8vw,78px);
+  line-height:1;
+  letter-spacing:-3px;
+}
+
+.hero h1 span{
+  background:linear-gradient(90deg,#818cf8,#22d3ee);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.hero p{
+  position:relative;
+  max-width:600px;
+  color:#94a3b8;
+  font-size:18px;
+  line-height:1.6;
+}
+
+.hero-buttons{
+  position:relative;
+  display:flex;
+  gap:12px;
+  margin-top:25px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+.main-btn,
+.second-btn{
+  padding:14px 22px;
+  border-radius:12px;
+  text-decoration:none;
+  font-weight:bold;
+  transition:.25s;
+}
+
+.main-btn{
+  color:white;
+  background:linear-gradient(135deg,#6366f1,#06b6d4);
+  box-shadow:0 10px 30px rgba(6,182,212,.18);
+}
+
+.second-btn{
+  color:#cbd5e1;
+  border:1px solid #334155;
+  background:#0f172a;
+}
+
+.main-btn:hover,
+.second-btn:hover{
+  transform:translateY(-3px);
+}
+
+.features{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+  margin:10px 0 55px;
+}
+
+.features div{
+  padding:20px;
+  text-align:center;
+  background:rgba(15,23,42,.7);
+  border:1px solid #1e293b;
+  border-radius:16px;
+}
+
+.features strong{
+  display:block;
+  font-size:18px;
+  margin-bottom:6px;
+}
+
+.features span{
+  color:#64748b;
+  font-size:13px;
+}
+
+.section-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:18px;
+}
+
+.section-title span{
+  font-size:26px;
+  font-weight:bold;
+}
+
+.section-title a{
+  color:#67e8f9;
+  text-decoration:none;
+}
+
+.popular-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+}
+
+.tool-box{
+  text-decoration:none;
+  color:white;
+  padding:22px;
+  background:rgba(15,23,42,.82);
+  border:1px solid #1e293b;
+  border-radius:18px;
+  transition:.3s;
+}
+
+.tool-box:hover{
+  transform:translateY(-5px);
+  border-color:#6366f1;
+  box-shadow:0 15px 35px rgba(99,102,241,.12);
+}
+
+.tool-box div{
+  font-size:32px;
+}
+
+.tool-box h3{
+  margin:12px 0 5px;
+}
+
+.tool-box p{
+  margin:0;
+  color:#64748b;
+  font-size:13px;
+}
+
+@media(max-width:750px){
+
+  .hero{
+    min-height:430px;
+  }
+
+  .features{
+    grid-template-columns:1fr;
+  }
+
+  .popular-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+}
+
+@media(max-width:450px){
+
+  .popular-grid{
+    grid-template-columns:1fr;
+  }
+
+  .hero h1{
+    letter-spacing:-2px;
+  }
+
+}
 </style>
 </head>
 
 <body>
- <div style="text-align:center;padding:20px;background:white;">
-  <img src="B6465AE4-CA42-4B6E-9141-C944FE206DBB.png" alt="Tool Mitra Logo" style="max-width:280px;width:80%;height:auto;">
-</div>
+ <div class="home">
 
-<header>
-<h1>Tool Mitra</h1>
+  <div class="hero">
 
-  <p>Free Online Tools for Everyone</p>
-</header>
- <div style="max-width:600px;margin:20px auto;padding:0 15px;">
-  <input
-    type="text"
-    id="toolSearch"
-    placeholder="🔎 Search a tool..."
-    onkeyup="searchTools()"
-    style="width:100%;padding:14px;border:1px solid #ddd;border-radius:10px;font-size:16px;box-sizing:border-box;"
-  >
-</div>
+    <div class="badge">
+      ✦ FREE ONLINE TOOLS
+    </div>
 
-<div class="container">
+    <h1>
+      Tools that make<br>
+      <span>life easier.</span>
+    </h1>
 
-
- <div class="card" style="grid-column:1/-1;">
-
-  <div style="text-align:center;margin-bottom:20px;">
-    <div style="font-size:42px;">🧮</div>
-
-    <h2 style="font-size:28px;margin:8px 0;">
-      Universal Math Solver
-    </h2>
-
-    <p style="color:#666;margin:0;">
-      Solve Maths • Algebra • Trigonometry • Powers • Roots • Log
+    <p>
+      Fast, simple and free online tools for everyday calculations.
     </p>
-  </div>
 
-  <textarea
-    id="mathQuestion"
-    placeholder="Type your question here...&#10;&#10;Example: 2x + 5 = 15&#10;Example: sin(30) + cos(60)&#10;Example: √25 + 5²"
-    rows="5"
-    style="
-      width:100%;
-      padding:16px;
-      border:2px solid #e5e7eb;
-      border-radius:12px;
-      box-sizing:border-box;
-      font-size:18px;
-      resize:vertical;
-      outline:none;
-    "
-  ></textarea>
+    <div class="hero-buttons">
+      <a href="tools.html" class="main-btn">
+        🚀 Explore All Tools
+      </a>
 
-  <div style="
-    display:grid;
-    grid-template-columns:repeat(6,1fr);
-    gap:8px;
-    margin-top:12px;
-  ">
-
-    <button onclick="addMath('7')">7</button>
-    <button onclick="addMath('8')">8</button>
-    <button onclick="addMath('9')">9</button>
-    <button onclick="addMath('+')">+</button>
-    <button onclick="addMath('(')">(</button>
-    <button onclick="addMath(')')">)</button>
-
-    <button onclick="addMath('4')">4</button>
-    <button onclick="addMath('5')">5</button>
-    <button onclick="addMath('6')">6</button>
-    <button onclick="addMath('-')">−</button>
-    <button onclick="addMath('√(')">√</button>
-    <button onclick="addMath('^2')">x²</button>
-
-    <button onclick="addMath('1')">1</button>
-    <button onclick="addMath('2')">2</button>
-    <button onclick="addMath('3')">3</button>
-    <button onclick="addMath('×')">×</button>
-    <button onclick="addMath('sin(')">sin</button>
-    <button onclick="addMath('cos(')">cos</button>
-
-    <button onclick="addMath('0')">0</button>
-    <button onclick="addMath('.')">.</button>
-    <button onclick="addMath('/')">÷</button>
-    <button onclick="addMath('tan(')">tan</button>
-    <button onclick="addMath('log(')">log</button>
-    <button onclick="backspaceMath()">⌫</button>
+      <a href="percentage-calculator.html" class="second-btn">
+        📊 Try Calculator
+      </a>
+    </div>
 
   </div>
 
-  <div style="
-    display:flex;
-    gap:10px;
-    margin-top:14px;
-    flex-wrap:wrap;
-  ">
 
-    <button
-      onclick="clearMath()"
-      style="flex:1;min-width:120px;padding:14px;border:1px solid #ddd;border-radius:10px;background:#f3f4f6;font-size:16px;"
-    >
-      🗑️ Clear
-    </button>
+  <div class="features">
 
-    <button
-      onclick="solveClass10Math()"
-      style="flex:2;min-width:180px;padding:14px;border:0;border-radius:10px;background:#111827;color:white;font-size:17px;font-weight:bold;"
-    >
-      🔍 Solve Question
-    </button>
+    <div>
+      <strong>⚡ Fast</strong>
+      <span>Instant results</span>
+    </div>
+
+    <div>
+      <strong>🔒 Simple</strong>
+      <span>No complicated setup</span>
+    </div>
+
+    <div>
+      <strong>💯 Free</strong>
+      <span>Free online tools</span>
+    </div>
 
   </div>
 
-  <div style="
-    margin-top:15px;
-    padding:12px;
-    background:#f8fafc;
-    border-radius:10px;
-    text-align:center;
-    font-size:14px;
-  ">
-    🎯 Free questions remaining:
-    <strong id="freeQuestions">10</strong>
+
+  <div class="popular">
+
+    <div class="section-title">
+      <span>Popular Tools</span>
+      <a href="tools.html">View all →</a>
+    </div>
+
+    <div class="popular-grid">
+
+      <a href="percentage-calculator.html" class="tool-box">
+        <div>📊</div>
+        <h3>Percentage</h3>
+        <p>Calculate percentage</p>
+      </a>
+
+      <a href="tools.html" class="tool-box">
+        <div>🎂</div>
+        <h3>Age Calculator</h3>
+        <p>Calculate exact age</p>
+      </a>
+
+      <a href="tools.html" class="tool-box">
+        <div>⚖️</div>
+        <h3>BMI Calculator</h3>
+        <p>Check your BMI</p>
+      </a>
+
+      <a href="tools.html" class="tool-box">
+        <div>💰</div>
+        <h3>EMI Calculator</h3>
+        <p>Calculate monthly EMI</p>
+      </a>
+
+    </div>
+
   </div>
 
-  <div id="class10MathResult" style="margin-top:18px;"></div>
-
 </div>
 
-<div class="card">
-<h2>📊Percentage Calculator</h2>
-<label>Percentage (%)</label>
-<input id="percent" type="number">
-<label>Number</label>
-<input id="percentNum" type="number">
-<button onclick="percentage()">Calculate</button>
-<div class="result" id="percentResult"></div>
-</div>
 
-<div class="card">
-<h2>🎂Age Calculator</h2>
-<label>Date of Birth</label>
-<input id="dob" type="date">
-<button onclick="age()">Calculate Age</button>
-<div class="result" id="ageResult"></div>
-</div>
+<footer>
+  © 2026 Tool Mitra<br><br>
 
-<div class="card">
-<h2>⚖️BMI Calculator</h2>
-<label>Height (cm)</label>
-<input id="height" type="number">
-<label>Weight (kg)</label>
-<input id="weight" type="number">
-<button onclick="bmi()">Calculate BMI</button>
-<div class="result" id="bmiResult"></div>
-</div>
-
-<div class="card">
-<h2>🧾GST Calculator</h2>
-<label>Amount (₹)</label>
-<input id="gstAmount" type="number">
-<label>GST (%)</label>
-<input id="gstRate" type="number">
-<button onclick="gst()">Calculate GST</button>
-<div class="result" id="gstResult"></div>
-</div>
-
-<div class="card">
-<h2>💰EMI Calculator</h2>
-<label>Loan Amount (₹)</label>
-<input id="loan" type="number">
-<label>Interest Rate (% yearly)</label>
-<input id="interest" type="number">
-<label>Tenure (years)</label>
-<input id="years" type="number">
-<button onclick="emi()">Calculate EMI</button>
-<div class="result" id="emiResult"></div>
-</div>
-
-<div class="card">
-<h2>🏷️Discount Calculator</h2>
-<label>Original Price (₹)</label>
-<input id="price" type="number">
-<label>Discount (%)</label>
-<input id="discount" type="number">
-<button onclick="discountCalc()">Calculate</button>
-<div class="result" id="discountResult"></div>
-</div>
-
-<div class="card">
-<h2>📏KM ↔ Miles Converter</h2>
-<label>Value</label>
-<input id="distance" type="number">
-<select id="conversion">
-<option value="km">Kilometers to Miles</option>
-<option value="mile">Miles to Kilometers</option>
-</select>
-<button onclick="convert()">Convert</button>
-<div class="result" id="distanceResult"></div>
-</div>
-
-<div class="card">
-<h2>🧮Simple Calculator</h2>
-<label>First Number</label>
-<input id="num1" type="number">
-<label>Second Number</label>
-<input id="num2" type="number">
-<select id="operator">
-<option value="+">Addition (+)</option>
-<option value="-">Subtraction (-)</option>
-<option value="*">Multiplication (×)</option>
-<option value="/">Division (÷)</option>
-</select>
-<button onclick="calculator()">Calculate</button>
-<div class="result" id="calcResult"></div>
-</div>
-
-</div>
-
-<footer>© 2026 Tool Mitra<br>
-
-<a href="terms.html">Terms & Conditions</a>
-
-<a href="about.html">About Us</a> |
-
-<a href="privacy.html">Privacy Policy</a>
-  
-<a href="contact.html">Contact Us</a>
+  <a href="tools.html">All Tools</a> |
+  <a href="terms.html">Terms</a> |
+  <a href="about.html">About</a> |
+  <a href="privacy.html">Privacy</a> |
+  <a href="contact.html">Contact</a>
 </footer>
 
 <script>
