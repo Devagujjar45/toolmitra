@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>EMI Calculator - Tool Mitra</title>
+
+<meta name="description" content="Calculate monthly loan EMI, total interest and total payment with Tool Mitra EMI Calculator.">
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:
+    radial-gradient(circle at 10% 10%,#172554 0,transparent 30%),
+    radial-gradient(circle at 90% 20%,#312e81 0,transparent 28%),
+    #070b16;
+  color:#f8fafc;
+}
+
+header{
+  text-align:center;
+  padding:35px 15px;
+}
+
+.logo{
+  font-size:32px;
+  font-weight:900;
+  background:linear-gradient(90deg,#fff,#818cf8,#22d3ee);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+header a{
+  color:#67e8f9;
+  text-decoration:none;
+}
+
+.container{
+  max-width:600px;
+  margin:20px auto;
+  padding:15px;
+}
+
+.card{
+  background:rgba(15,23,42,.85);
+  border:1px solid #1e293b;
+  border-radius:22px;
+  padding:28px;
+  box-shadow:0 20px 50px rgba(0,0,0,.3);
+}
+
+.icon{
+  text-align:center;
+  font-size:55px;
+}
+
+h1{
+  text-align:center;
+  margin:10px 0;
+}
+
+.subtitle{
+  text-align:center;
+  color:#94a3b8;
+  line-height:1.5;
+}
+
+label{
+  display:block;
+  margin-top:22px;
+  margin-bottom:8px;
+  font-weight:bold;
+}
+
+input{
+  width:100%;
+  padding:15px;
+  border-radius:12px;
+  border:1px solid #334155;
+  background:#0b1220;
+  color:white;
+  font-size:17px;
+}
+
+button{
+  width:100%;
+  margin-top:25px;
+  padding:15px;
+  border:0;
+  border-radius:12px;
+  background:linear-gradient(135deg,#6366f1,#06b6d4);
+  color:white;
+  font-size:17px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.result{
+  margin-top:20px;
+  padding:20px;
+  border-radius:15px;
+  background:rgba(30,41,59,.8);
+  line-height:1.9;
+}
+
+.result strong{
+  color:#67e8f9;
+}
+
+footer{
+  text-align:center;
+  padding:35px 15px;
+  color:#64748b;
+}
+
+footer a{
+  color:#67e8f9;
+  text-decoration:none;
+  margin:0 5px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">Tool Mitra</div>
+  <br>
+  <a href="tools.html">← Back to All Tools</a>
+</header>
+
+<div class="container">
+
+  <div class="card">
+
+    <div class="icon">💰</div>
+
+    <h1>EMI Calculator</h1>
+
+    <p class="subtitle">
+      Calculate your monthly EMI, total interest and total payment.
+    </p>
+
+    <label>Loan Amount (₹)</label>
+
+    <input
+      type="number"
+      id="loan"
+      placeholder="Example: 500000"
+      min="0"
+    >
+
+    <label>Interest Rate (% per year)</label>
+
+    <input
+      type="number"
+      id="rate"
+      placeholder="Example: 8.5"
+      step="0.01"
+      min="0"
+    >
+
+    <label>Loan Tenure (Years)</label>
+
+    <input
+      type="number"
+      id="years"
+      placeholder="Example: 5"
+      min="1"
+    >
+
+    <button onclick="calculateEMI()">
+      💰 Calculate EMI
+    </button>
+
+    <div class="result" id="result">
+      Enter your loan details above.
+    </div>
+
+  </div>
+
+</div>
+
+<footer>
+  © 2026 Tool Mitra<br><br>
+
+  <a href="index.html">Home</a> |
+  <a href="tools.html">All Tools</a> |
+  <a href="privacy.html">Privacy</a> |
+  <a href="contact.html">Contact</a>
+</footer>
+
+<script>
+function calculateEMI(){
+
+  let principal=Number(
+    document.getElementById("loan").value
+  );
+
+  let annualRate=Number(
+    document.getElementById("rate").value
+  );
+
+  let years=Number(
+    document.getElementById("years").value
+  );
+
+  let result=document.getElementById("result");
+
+  if(
+    !principal ||
+    principal<=0 ||
+    annualRate<0 ||
+    years<=0
+  ){
+    result.innerHTML=
+      "⚠️ Please enter valid loan details.";
+    return;
+  }
+
+  let months=years*12;
+
+  let monthlyRate=
+    annualRate/12/100;
+
+  let emi;
+
+  if(monthlyRate===0){
+
+    emi=principal/months;
+
+  }else{
+
+    emi=
+      principal*
+      monthlyRate*
+      Math.pow(1+monthlyRate,months)/
+      (Math.pow(1+monthlyRate,months)-1);
+
+  }
+
+  let totalPayment=emi*months;
+
+  let totalInterest=
+    totalPayment-principal;
+
+  result.innerHTML=
+    "<div style='text-align:center;'>"+
+    "<div style='font-size:24px;font-weight:bold;'>"+
+    "💰 EMI Result"+
+    "</div><br>"+
+    "<strong>Monthly EMI:</strong><br>"+
+    "<div style='font-size:30px;font-weight:bold;margin:5px 0;'>"+
+    "₹"+emi.toFixed(2)+
+    "</div><br>"+
+    "<strong>Loan Amount:</strong> ₹"+
+    principal.toFixed(2)+
+    "<br>"+
+    "<strong>Total Interest:</strong> ₹"+
+    totalInterest.toFixed(2)+
+    "<br>"+
+    "<strong>Total Payment:</strong> ₹"+
+    totalPayment.toFixed(2)+
+    "</div>";
+}
+</script>
+
+</body>
+</html>
