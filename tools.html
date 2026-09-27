@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Tool Mitra - All Free Online Tools</title>
+
+<meta name="description" content="Use free online calculators and useful tools from Tool Mitra.">
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:
+    radial-gradient(circle at 10% 10%,#172554 0,transparent 30%),
+    radial-gradient(circle at 90% 20%,#312e81 0,transparent 28%),
+    #070b16;
+  color:#f8fafc;
+}
+
+header{
+  text-align:center;
+  padding:45px 20px 30px;
+}
+
+header h1{
+  margin:0;
+  font-size:clamp(40px,9vw,65px);
+  font-weight:900;
+  background:linear-gradient(90deg,#fff,#818cf8,#22d3ee);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+header p{
+  color:#a5b4fc;
+  font-size:18px;
+}
+
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:15px;
+}
+
+.search{
+  margin:10px auto 30px;
+  max-width:650px;
+}
+
+.search input{
+  width:100%;
+  padding:16px;
+  border-radius:14px;
+  border:1px solid #334155;
+  background:#0f172a;
+  color:white;
+  font-size:17px;
+  outline:none;
+}
+
+.tools{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:20px;
+}
+
+.card{
+  background:rgba(15,23,42,.82);
+  border:1px solid rgba(148,163,184,.15);
+  border-radius:20px;
+  padding:25px;
+  text-align:center;
+  box-shadow:0 15px 40px rgba(0,0,0,.25);
+  transition:.3s;
+}
+
+.card:hover{
+  transform:translateY(-6px);
+  border-color:#818cf8;
+  box-shadow:0 20px 45px rgba(99,102,241,.18);
+}
+
+.icon{
+  font-size:42px;
+}
+
+.card h2{
+  margin:12px 0 8px;
+}
+
+.card p{
+  color:#94a3b8;
+}
+
+.card a{
+  display:block;
+  margin-top:18px;
+  padding:13px;
+  border-radius:10px;
+  background:linear-gradient(135deg,#6366f1,#06b6d4);
+  color:white;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+footer{
+  text-align:center;
+  padding:40px 15px;
+  color:#94a3b8;
+}
+
+footer a{
+  color:#67e8f9;
+  text-decoration:none;
+  margin:0 5px;
+}
+
+@media(max-width:700px){
+  .tools{
+    grid-template-columns:1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Tool Mitra</h1>
+  <p>All Free Online Tools in One Place</p>
+</header>
+
+<div class="container">
+
+  <div class="search">
+    <input
+      type="text"
+      id="search"
+      placeholder="🔎 Search a tool..."
+      onkeyup="searchTools()"
+    >
+  </div>
+
+  <div class="tools">
+
+    <div class="card">
+      <div class="icon">🧮</div>
+      <h2>Universal Math Solver</h2>
+      <p>Calculate expressions, powers, roots and more.</p>
+      <a href="index.html">Open Tool</a>
+    </div>
+
+    <div class="card">
+      <div class="icon">📊</div>
+      <h2>Percentage Calculator</h2>
+      <p>Calculate percentages quickly and easily.</p>
+      <a href="percentage-calculator.html">Open Tool</a>
+    </div>
+
+    <div class="card">
+      <div class="icon">🎂</div>
+      <h2>Age Calculator</h2>
+      <p>Calculate your exact age.</p>
+      <a href="index.html">Open Tool</a>
+    </div>
+
+    <div class="card">
+      <div class="icon">⚖️</div>
+      <h2>BMI Calculator</h2>
+      <p>Calculate BMI using height and weight.</p>
+      <a href="index.html">Open Tool</a>
+    </div>
+
+    <div class="card">
+      <div class="icon">🧾</div>
+      <h2>GST Calculator</h2>
+      <p>Calculate GST amount and total price.</p>
+      <a href="index.html">Open Tool</a>
+    </div>
+
+    <div class="card">
+      <div class="icon">💰</div>
+      <h2>EMI Calculator</h2>
+      <p>Calculate your monthly loan EMI.</p>
+      <a href="index.html">Open Tool</a>
+    </div>
+
+    <div class="card">
+      <div class="icon">🏷️</div>
+      <h2>Discount Calculator</h2>
+      <p>Calculate discount and final price.</p>
+      <a href="index.html">Open Tool</a>
+    </div>
+
+    <div class="card">
+      <div class="icon">📏</div>
+      <h2>KM ↔ Miles Converter</h2>
+      <p>Convert kilometers and miles instantly.</p>
+      <a href="index.html">Open Tool</a>
+    </div>
+
+    <div class="card">
+      <div class="icon">➗</div>
+      <h2>Simple Calculator</h2>
+      <p>Perform basic mathematical calculations.</p>
+      <a href="index.html">Open Tool</a>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  © 2026 Tool Mitra<br><br>
+
+  <a href="index.html">Home</a> |
+  <a href="terms.html">Terms</a> |
+  <a href="about.html">About</a> |
+  <a href="privacy.html">Privacy</a> |
+  <a href="contact.html">Contact</a>
+</footer>
+
+<script>
+function searchTools(){
+
+  let input=document
+    .getElementById("search")
+    .value
+    .toLowerCase();
+
+  let cards=document.querySelectorAll(".card");
+
+  cards.forEach(function(card){
+
+    let text=card.innerText.toLowerCase();
+
+    if(text.includes(input)){
+      card.style.display="";
+    }else{
+      card.style.display="none";
+    }
+
+  });
+}
+</script>
+
+</body>
+</html>
