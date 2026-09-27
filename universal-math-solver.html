@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Universal Math Solver - Tool Mitra</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f7fb;
+  color: #111827;
+}
+
+.container {
+  max-width: 700px;
+  margin: auto;
+  padding: 20px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.header h1 {
+  margin-bottom: 8px;
+  color: #2563eb;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+textarea {
+  width: 100%;
+  min-height: 130px;
+  padding: 15px;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  font-size: 18px;
+  resize: vertical;
+  outline: none;
+}
+
+button {
+  width: 100%;
+  margin-top: 15px;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  background: #2563eb;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+.result {
+  margin-top: 20px;
+  padding: 15px;
+  background: #eff6ff;
+  border-radius: 12px;
+  display: none;
+}
+
+.example {
+  margin-top: 20px;
+  color: #4b5563;
+  line-height: 1.7;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="header">
+    <h1>Tool Mitra</h1>
+    <h2>Universal Math Solver</h2>
+    <p>Solve common mathematical calculations instantly.</p>
+  </div>
+
+  <div class="card">
+
+    <textarea id="problem"
+      placeholder="Example: 25 + 35
+50% of 800
+1200 - 25%
+15 × 12"></textarea>
+
+    <button onclick="solve()">Solve</button>
+
+    <div id="result" class="result"></div>
+
+    <div class="example">
+      <b>Examples:</b><br>
+      • 25 + 35<br>
+      • 100 - 45<br>
+      • 15 × 12<br>
+      • 120 ÷ 5<br>
+      • 20% of 500<br>
+      • 1500 + 10%
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+
+function solve() {
+
+  let input = document.getElementById("problem").value.trim();
+  let resultBox = document.getElementById("result");
+
+  if (!input) {
+    resultBox.style.display = "block";
+    resultBox.innerHTML = "Please enter a math problem.";
+    return;
+  }
+
+  try {
+
+    let text = input.toLowerCase()
+      .replace(/×/g, "*")
+      .replace(/÷/g, "/")
+      .replace(/,/g, "");
+
+    // Percentage of
+    let percentOf = text.match(/^([\d.]+)%\s*of\s*([\d.]+)$/);
+
+    if (percentOf) {
+      let percent = parseFloat(percentOf[1]);
+      let number = parseFloat(percentOf[2]);
+      let answer = (percent / 100) * number;
+
+      showResult(answer);
+      return;
+    }
+
+    // Basic percentage addition/subtraction
+    let percentChange = text.match(/^([\d.]+)\s*([+-])\s*([\d.]+)%$/);
+
+    if (percentChange) {
+      let number = parseFloat(percentChange[1]);
+      let operator = percentChange[2];
+      let percent = parseFloat(percentChange[3]);
+
+      let change = number * percent / 100;
+
+      let answer = operator === "+"
+        ? number + change
+        : number - change;
+
+      showResult(answer);
+      return;
+    }
+
+    // Basic calculation
+    if (/^[0-9+\-*/().%\s]+$/.test(text)) {
+
+      let expression = text.replace(/(\d+(?:\.\d+)?)%/g, "($1/100)");
+
+      let answer = Function('"use strict"; return (' + expression + ')')();
+
+      if (Number.isFinite(answer)) {
+        showResult(answer);
+        return;
+      }
+    }
+
+    resultBox.style.display = "block";
+    resultBox.innerHTML =
+      "Sorry, I couldn't solve this problem yet.<br><br>" +
+      "Try examples like:<br>" +
+      "25 + 35<br>" +
+      "20% of 500";
+
+  } catch (error) {
+
+    resultBox.style.display = "block";
+    resultBox.innerHTML = "Please enter a valid mathematical expression.";
+
+  }
+}
+
+function showResult(answer) {
+
+  let resultBox = document.getElementById("result");
+
+  resultBox.style.display = "block";
+
+  resultBox.innerHTML =
+    "<b>Answer:</b><br><br>" +
+    "<span style='font-size:28px'>" +
+    Number(answer).toLocaleString() +
+    "</span>";
+}
+
+</script>
+
+</body>
+</html>
